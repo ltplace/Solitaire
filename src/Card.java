@@ -30,6 +30,7 @@ private void compareTo(Card card1, Card card2){
 
 public String toString(){
 	return "Suit = " + suit + ", value = " + value + ", color = " + color + "\n";
+	
 }
 
 }
