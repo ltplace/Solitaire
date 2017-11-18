@@ -5,9 +5,9 @@ public class Foundation implements Stack<Card> {
 	ArrayList<Card> arr = new ArrayList<Card>();
 
 	
-	
+	//Pushes Card onto Stack if requirements are met
 	public void addTo(Card card) {
-		if(top().value - card.value == 1 && top().color != card.color) {
+		if(top().suit.equals(card.suit) && top().value == card.value - 1) {
 			push(card);
 		}
 	}
