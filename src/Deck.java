@@ -22,7 +22,7 @@ public static void main(String[] args) {
 
 	}
 
-	public static void shuffle(ArrayList<Card> deck)
+	public void shuffle(ArrayList<Card> deck)
 	  {
 	    Random rnd = ThreadLocalRandom.current();
 	    for (int i = 51; i > 0; i--)
