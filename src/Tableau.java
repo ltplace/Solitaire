@@ -1,6 +1,13 @@
+import java.util.ArrayList;
 
 public class Tableau {
 	
-	//Testing Push of Tableau to eclipse
+	protected ArrayList<Card> Column = new ArrayList<Card>();
+	
+	
+	public Card topOfTablue() {
+		return Column.get(0);
+	}
+	
 	
 }
