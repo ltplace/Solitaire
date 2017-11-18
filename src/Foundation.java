@@ -1,18 +1,19 @@
 import java.util.ArrayList;
 
-public class Tableau implements Stack<Card>{
+public class Foundation implements Stack<Card> {
+
+	ArrayList<Card> arr = new ArrayList<Card>();
+
 	
-	protected ArrayList<Card> arr = new ArrayList<Card>();
-	
-	
-	
-	
+	//Pushes Card onto Stack if requirements are met
 	public void addTo(Card card) {
-		
-		
+		if(top().suit.equals(card.suit) && top().value == card.value - 1) {
+			push(card);
+		}
 	}
 	
-
+	
+	
 	@Override
 	public void push(Card card) {
 		arr.add(0, card);
@@ -54,5 +55,5 @@ public class Tableau implements Stack<Card>{
 		return false;
 	}
 	
-	
 }
+
