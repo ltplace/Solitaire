@@ -12,7 +12,7 @@ public Card(String suit, int value){
 	else
 		color = "Red";
 }
-
+// Tester
 private void compareTo(Card card1, Card card2){
 	if(card1.color == "Black" && card2.color == "Red" && card2.value == card1.value + 1){
 		//move is allowed
