@@ -37,6 +37,6 @@ public class Card {
 	}
 
 	public String toString(){
-		return String.format("Suite: %s, Value: %d, Color: %s, Face-down: %s\n", suit, value, color, faceDown);
+		return String.format("Suit: %s, Value: %d\n", suit, value);
 	}
 }
