@@ -5,9 +5,9 @@ public class ModelOfGame extends Main{
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Main main = new Main();
+		GUI gui = new GUI();
 		
-		while(true) {
+		/*while(true) {
 			
 		try{
 			print();
@@ -62,7 +62,7 @@ public class ModelOfGame extends Main{
 		} catch (InputMismatchException ex) {continue;}
 		}
 		
-		System.out.println("****************YOU WIN*****************");
+	*/	//System.out.println("****************YOU WIN*****************");
 		
 	}
 }
