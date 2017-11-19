@@ -4,9 +4,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Deck {
 
+	static ArrayList<Card> deck = new ArrayList<Card>();
 public static void main(String[] args) {
-
-	ArrayList<Card> deck = new ArrayList<Card>();
 
 	final String[] setSuit = new String[] { "Clubs", "Spades", "Hearts", "Diamonds" };
 
@@ -17,7 +16,7 @@ public static void main(String[] args) {
 		}
 	}
 	System.out.println(deck.toString());
-	shuffle(deck);
+	//shuffle(deck);
 	System.out.println(deck.toString());
 
 	}
@@ -35,6 +34,7 @@ public static void main(String[] args) {
 	  }
 
 	public Card draw(){
+		
 		Card card = deck.get(0);
 		deck.remove(0);
 		return card;

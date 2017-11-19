@@ -2,10 +2,10 @@ import java.util.ArrayList;
 
 public class Tableau implements Stack<Card> {
 
-	protected ArrayList<Card> Column = new ArrayList<Card>();
+	protected ArrayList<Card> arr = new ArrayList<Card>();
 
 	public void addTo(Card card) {
-		if (card.color != Column.get(0).color && card.value == Column.get(0).value - 1) {
+		if (card.color != arr.get(0).color && card.value == arr.get(0).value - 1) {
 			push(card);
 		}
 	}
