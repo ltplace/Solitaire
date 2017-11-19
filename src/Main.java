@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main extends Deck {
+public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
 		// Variables
-		ArrayList<Card> deck = getDeck();
+		Deck deck = new Deck();
 		WastePile WP = new WastePile();
 	
 		Tableau T1 = new Tableau();
@@ -35,6 +35,12 @@ public class Main extends Deck {
 			}
 		}
 	
+		System.out.println(T1);
+		System.out.println(T2);
+		T1.addTo(T2.get(1));
+		System.out.println(T1);
+		System.out.println(T2);
+		
 		// Adds deck to Wastepile (Make this into function; Remove lines until you reach try block.
 		while(true) {
 			System.out.println(deck);
@@ -43,10 +49,10 @@ public class Main extends Deck {
 			
 			if (input == 1) {
 				try {
-					WP.add2Rear(deck.remove(0));
+					WP.add2Rear(deck.removeFront());
 				} catch(IndexOutOfBoundsException ex) {
 					while(!WP.isMTQ()) {
-						deck.add(WP.removeFront());
+						deck.add2Rear(WP.removeFront());
 					}
 				}
 			}

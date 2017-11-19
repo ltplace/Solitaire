@@ -41,4 +41,3 @@ public class Card {
 		return String.format("%s%s", suit, value);
 	}
 }
-
