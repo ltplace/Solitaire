@@ -1,12 +1,16 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import javax.imageio.ImageIO;
 
 public class Deck implements Queue<Card>{	
 	
 	protected static ArrayList<Card> deck;
 	
-	public Deck(){
+	public Deck (){
 
 		deck = new ArrayList<Card>();
 
@@ -15,17 +19,47 @@ public class Deck implements Queue<Card>{
 		for (int i = 0; i < 4; i++) {
 			for (int j = 1; j <= 13; j++) {
 				Card card = new Card(setSuit[i], j);
+				// Adds Club card images
+				if (i == 0) {
+					try {
+						card.FaceImg = ImageIO.read(new File("C://Users//TJ//Pictures//Deck//" + j + "_of_clubs.png"));
+						card.resize(card.FaceImg, 20, 40);
+					} catch (IOException e) {}
+				}
+				// Adds Spades card images
+				if (i == 1) {
+					try {
+						card.FaceImg = ImageIO.read(new File("C://Users//TJ//Pictures//Deck//" + j + "_of_spades.png"));
+						card.resize(card.FaceImg, 20, 40);
+					} catch (IOException e) {}
+				}
+				// Adds Hearts card images
+				if (i == 2) {
+					try {
+						card.FaceImg = ImageIO.read(new File("C://Users//TJ//Pictures//Deck//" + j + "_of_hearts.png"));
+						card.resize(card.FaceImg, 20, 40);
+					} catch (IOException e) {}
+				}
+				// Adds Diamonds card images
+				if (i == 3) {
+					try {
+						card.FaceImg = ImageIO.read(new File("C://Users//TJ//Pictures//Deck//" + j + "_of_diamonds.png"));
+						card.resize(card.FaceImg, 20, 40);
+					} catch (IOException e) {}
+				}
+				// Add to deck
 				deck.add(card);
 			}
 		}
+		// Shuffle entire deck
 		shuffle();
 	}
 
+	// Method to shuffle entire deck
 	public void shuffle()
 	{
 		Random rnd = ThreadLocalRandom.current();
-		for (int i = 51; i > 0; i--)
-		{
+		for (int i = 51; i > 0; i--) {
 			int index = rnd.nextInt(i + 1);
 			Card a = deck.get(index);
 			deck.set(index, deck.get(i));
@@ -33,29 +67,13 @@ public class Deck implements Queue<Card>{
 		}
 	}
 
-	public Card draw(){
-		Card card = deck.get(0);
-		deck.remove(0);
-		return card;
-	}
-	
-	public static Deck getDeck() {
-		Deck deck = new Deck();
-		return deck;
-	}
-
-	public Card get(int index) {
-		return deck.get(index);
-	}
-
 	@Override
 	public void add2Rear(Card card) {
 		deck.add(card);
 	}
 	
-	@Override
+	// Added ability to remove from the front (like a Stack)
 	public Card removeFront() {
-		
 		Card retval = deck.remove(0);
 		
 		return retval;

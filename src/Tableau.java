@@ -5,11 +5,24 @@ public class Tableau implements Stack<Card> {
 
 	protected ArrayList<Card> Column = new ArrayList<Card>();
 
-	public void addTo(Card card) {
-		if (card.color != Column.get(0).color && card.value == Column.get(0).value - 1) {
-			push(card);
+	// Method for checking valid movements between Tableaus
+	public boolean addTo(Card card) {
+		if (Column.isEmpty()) {
+			if (card.value == 13 || card.value == 26 || card.value == 39 || card.value == 52) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
-		setGrabbable();
+		else {
+			if (card.color != Column.get(size()-1).color && card.value == Column.get(size()-1).value - 1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 	}	
 	// May not need for end product
 	public Card get(int index) {
@@ -17,14 +30,28 @@ public class Tableau implements Stack<Card> {
 	}
 	@Override
 	public void push(Card car) {
-		Column.add(0, car);
+		Column.add(car);
+	}
+	
+	// Return size of Tableau
+	public int size() {
+		return Column.size();
 	}
 
 	@Override
 	public Card pop() {
 		Card retval = null;
 		if (!isMT()) {
-			retval = Column.remove(0);
+			retval = Column.remove(size()-1);
+		}
+		return retval;
+	}
+	
+	// Method for removing in middle of stack
+	public Card remove(int index) {
+		Card retval = null;
+		if (!isMT()) {
+			retval = Column.remove(index);
 		}
 		return retval;
 	}
@@ -33,7 +60,7 @@ public class Tableau implements Stack<Card> {
 	public Card top() {
 		Card retval = null;
 		if (!isMT()) {
-			retval = Column.get(0);
+			retval = Column.get(size()-1);
 		}
 		return retval;
 	}
@@ -50,7 +77,12 @@ public class Tableau implements Stack<Card> {
 
 	@Override
 	public boolean isFull() {
-		return false;
+		if (Column.size() == 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 	
 	@Override
@@ -59,16 +91,14 @@ public class Tableau implements Stack<Card> {
 	}
 	
 	public void setGrabbable(){
-		Column.get(0).grabbable = true;
+		Column.get(size()-1).grabbable = true;
+		if (Column.size() != 1) {
+			Column.get(size()-2).grabbable = true;
+		}
 		try{
-			for(int i=0; i<Column.size(); i++){
-				if(Column.get(i).color != Column.get(i+1).color && Column.get(i).value == Column.get(i+1).value -1){
-					Column.get(i+1).grabbable = true;
+			for(int i=size();; i++){
+					Column.get(i).grabbable = true;
 				}
-				else{
-					return;
-				}
-			}
 		}catch(IndexOutOfBoundsException e){
 		}
 	}
