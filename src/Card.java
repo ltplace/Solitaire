@@ -32,7 +32,7 @@ public class Card {
 			this.color = "Red";
 
 		// Set card to show back side of card
-		try { this.BackImg = ImageIO.read(new File("Deck//red_back.png")); } catch (IOException e) {}
+		try { this.BackImg = ImageIO.read(new File("resources//red_back.png")); } catch (IOException e) {}
 		Img = BackImg;
 		resize(Img, 20, 40);
 	}
