@@ -12,14 +12,14 @@ public class Tableau implements Stack<Card> {
 
 	@Override
 	public void push(Card card) {
-		arr.add(0, card);
+		Column.add(0, card);
 	}
 
 	@Override
 	public Card pop() {
 		Card retval = null;
 		if(!isMT()){
-		retval = arr.remove(0);
+		retval = Column.remove(0);
 		}else{
 			System.out.println("Can't remove from empty stack");
 		}
@@ -30,7 +30,7 @@ public class Tableau implements Stack<Card> {
 	public Card top() {
 		Card retval = null;
 		if(!isMT()){
-		retval = arr.get(0);
+		retval = Column.get(0);
 		}else{
 			System.out.println("Can't get from empty stack");
 		}
@@ -40,7 +40,7 @@ public class Tableau implements Stack<Card> {
 	@Override
 	public boolean isMT() {
 		boolean retval = true;
-		if(arr.size() > 0){
+		if(Column.size() > 0){
 			retval = false;
 		}
 		return retval;
