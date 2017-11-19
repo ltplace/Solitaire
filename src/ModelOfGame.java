@@ -5,8 +5,10 @@ public class ModelOfGame extends Main{
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Main main = new Main();
+
+		Game_Viewer x = new Game_Viewer();
 		
+		/*
 		while(true) {
 			
 		try{
@@ -63,6 +65,6 @@ public class ModelOfGame extends Main{
 		}
 		
 		System.out.println("****************YOU WIN*****************");
-		
+		*/
 	}
 }
