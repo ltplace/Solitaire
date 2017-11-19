@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Deck {	
+public class Deck implements Queue<Card>{	
 	
-	public ArrayList<Card> deck;
+	protected static ArrayList<Card> deck;
 	
-	public static ArrayList<Card> getDeck(){
+	public Deck(){
 
-		ArrayList<Card> deck = new ArrayList<Card>();
+		deck = new ArrayList<Card>();
 
 		final String[] setSuit = new String[] { "C", "S", "H", "D" };
 
@@ -18,7 +18,7 @@ public class Deck {
 				deck.add(card);
 			}
 		}
-		return deck;
+		shuffle();
 	}
 
 	public void shuffle()
@@ -37,6 +37,60 @@ public class Deck {
 		Card card = deck.get(0);
 		deck.remove(0);
 		return card;
+	}
+	
+	public static Deck getDeck() {
+		Deck deck = new Deck();
+		return deck;
+	}
+
+	public Card get(int index) {
+		return deck.get(index);
+	}
+
+	@Override
+	public void add2Rear(Card card) {
+		deck.add(card);
+	}
+	
+	@Override
+	public Card removeFront() {
+		
+		Card retval = deck.remove(0);
+		
+		return retval;
+	}
+
+	@Override
+	public Card examineFront() {
+		Card retval = null;
+		if (!isMTQ()) {
+			retval = (Card) deck.get(0);
+		}
+		return retval;
+	}
+
+	@Override
+	public boolean isMTQ() {
+		boolean retval = true;
+		if (deck.size() > 0) {
+			retval = false;
+		}
+		return retval;
+	}
+
+	@Override
+	public boolean isFullQ() {
+		boolean retval = false;
+		if (deck.size() > 0) {
+			retval = true;
+		}
+		return retval;
+	}
+	
+	@Override
+	public String toString() {
+		return deck.toString();
 	}
 
 }
