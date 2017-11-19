@@ -39,7 +39,8 @@ public class Tableau implements Stack<Card> {
 	@Override
 	public boolean isMT() {
 		boolean retval = true;
-		if (Column.size() > 0) {
+
+		if(Column.size() > 0){
 			retval = false;
 		}
 		return retval;
@@ -54,5 +55,4 @@ public class Tableau implements Stack<Card> {
 	public String toString() {
 		return Column.toString();
 	}
-
 }
