@@ -4,7 +4,8 @@ public class Card {
 	protected int value;
 	protected String color;
 	protected boolean faceDown = true;
-
+	protected boolean grabbable = false;
+	
 	public Card(String suit, int value){
 		this.suit = suit;
 		this.value = value;
