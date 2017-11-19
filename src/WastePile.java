@@ -1,53 +1,63 @@
 import java.util.ArrayList;
 
-public class WastePile implements Queue<Card>{
+public class WastePile implements Stack<Card>{
 
 	protected ArrayList<Card> array = new ArrayList<>();
 	
+	
 	@Override
-	public void add2Rear(Card ch) {
-		array.add(ch);
+	public String toString() {
+		return array.toString();
 	}
 
 	@Override
-	public Card removeFront() {
-		Card retval = null;
-		if (array.size() > 0) {
-			retval = array.remove(0);
-		}
-		
-		return retval;
+	public void push(Card card) {
+		array.add(0, card);
 	}
 
 	@Override
-	public Card examineFront() {
+	public Card pop() {
 		Card retval = null;
-		if (!isMTQ()) {
-			retval = (Card) array.get(0);
+		if(!isMT()){
+		retval = array.remove(0);
+		}else{
+			System.out.println("Can't remove from empty stack");
 		}
 		return retval;
 	}
 
 	@Override
-	public boolean isMTQ() {
+	public Card top() {
+		Card retval = null;
+		if(!isMT()){
+		retval = array.get(0);
+		}else{
+			System.out.println("Can't get from empty stack");
+		}
+		return retval;
+	}
+
+	@Override
+	public boolean isMT() {
 		boolean retval = true;
-		if (array.size() > 0) {
+		if(array.size() > 0){
 			retval = false;
 		}
 		return retval;
 	}
 
 	@Override
-	public boolean isFullQ() {
-		boolean retval = false;
-		if (array.size() > 0) {
-			retval = true;
-		}
-		return retval;
+	public boolean isFull() {
+		return false;
 	}
 	
-	@Override
-	public String toString() {
-		return array.toString();
+	// Method that removes from back to place back in Deck
+	public Card removeBack() {
+		Card card = null;
+		if (!isMT()) {
+			card = array.remove(array.size()-1);
+		}
+		return card;
 	}
+
 }

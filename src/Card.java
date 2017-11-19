@@ -1,43 +1,78 @@
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.WritableImage;
+
+
 public class Card {
 
+	// Attributes
 	protected String suit;
 	protected int value;
 	protected String color;
-	protected boolean faceDown = true;
+	private boolean faceDown = true;
 	protected boolean grabbable = false;
+	protected BufferedImage FaceImg = null;
+	protected BufferedImage BackImg = null;
+	protected BufferedImage Img = null;
 	
-	public Card(String suit, int value){
+	public Card (String suit, int value){
 		this.suit = suit;
 		this.value = value;
 		if(suit == "S" || suit == "C")
-			color = "Black";
+			this.color = "Black";
 		else
-			color = "Red";
+			this.color = "Red";
+		
+		// Set card to show back side of card
+		try { this.BackImg = ImageIO.read(new File("C://Users//TJ//Pictures//Deck//red_back.png")); } catch (IOException e) {}
+		Img = BackImg;
+		resize(Img, 20, 40);
 	}
 
 	public void faceUp(boolean choice) {
-		if (choice == false) {
+		if (choice == true) {
 			this.faceDown = false;
+			this.Img = this.FaceImg;
+			resize(this.Img, 20, 40);
 		}
 		else {
 			this.faceDown = true;
+			this.Img = this.BackImg;
+			resize(Img, 20, 40);
 		}
-	}
-
-	private void compareTo(Card card1, Card card2){
-		if(card1.color == "Black" && card2.color == "Red" && card2.value == card1.value + 1){
-			//move is allowed
-		}
-		else if(card1.color == "Red" && card2.color == "Black" && card2.value == card1.value + 1){
-			//Move is allowed
-		}
-		else{
-			System.out.println("Move not allowed. Try another move.");
-		}
-
 	}
 
 	public String toString(){
-		return String.format("%s%s", suit, value);
+		String grab;
+		if (grabbable == true)
+			grab = "+";
+		else
+			grab = "_";
+		return String.format("%s%s%s", suit, value, grab);
+	}
+	
+	//JAVAFX
+	public void resize(BufferedImage img, int width, int height) {
+		Image tmp = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+		BufferedImage tempImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+		
+		Graphics2D g2d = tempImg.createGraphics();
+		g2d.drawImage(tmp, 0, 0, null);
+		g2d.dispose();
+		
+		img = tempImg;
+	}
+	
+	// Getter for faceDown
+	public boolean getFaceDown() {
+		return faceDown;
 	}
 }
