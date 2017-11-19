@@ -9,48 +9,10 @@ public class Tableau implements Stack<Card> {
 			push(card);
 		}
 	}	
-
-	@Override
-	public void push(Card card) {
-		arr.add(0, card);
+	// May not need for end product
+	public Card get(int index) {
+		return Column.get(index);
 	}
-
-	@Override
-	public Card pop() {
-		Card retval = null;
-		if(!isMT()){
-		retval = arr.remove(0);
-		}else{
-			System.out.println("Can't remove from empty stack");
-		}
-		return retval;
-	}
-
-	@Override
-	public Card top() {
-		Card retval = null;
-		if(!isMT()){
-		retval = arr.get(0);
-		}else{
-			System.out.println("Can't get from empty stack");
-		}
-		return retval;
-	}
-
-	@Override
-	public boolean isMT() {
-		boolean retval = true;
-		if(arr.size() > 0){
-			retval = false;
-		}
-		return retval;
-	}
-
-	@Override
-	public boolean isFull() {
-		return false;
-	}
-
 	@Override
 	public void push(Card car) {
 		Column.add(0, car);
@@ -86,6 +48,11 @@ public class Tableau implements Stack<Card> {
 	@Override
 	public boolean isFull() {
 		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return Column.toString();
 	}
 
 }

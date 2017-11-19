@@ -1,39 +1,3 @@
-<<<<<<< HEAD
-public class Card {
-//Testing this with ZachBranch
-protected String suit;
-protected int value;
-protected String color;
-
-public Card(String suit, int value){
-	this.suit = suit;
-	this.value = value;
-	if(suit == "Spades" || suit == "Clubs")
-		color = "Black";
-	else
-		color = "Red";
-}
-// Tester
-private void compareTo(Card card1, Card card2){
-	if(card1.color == "Black" && card2.color == "Red" && card2.value == card1.value + 1){
-		//move is allowed
-	}
-	else if(card1.color == "Red" && card2.color == "Black" && card2.value == card1.value + 1){
-		//Move is allowed
-	}
-	else{
-		System.out.println("Move not allowed. Try another move.");
-	}
-		
-	
-	
-}
-
-public String toString(){
-	return "Suit = " + suit + ", value = " + value + ", color = " + color + "\n";
-}
-
-=======
 public class Card {
 
 	protected String suit;
@@ -44,7 +8,7 @@ public class Card {
 	public Card(String suit, int value){
 		this.suit = suit;
 		this.value = value;
-		if(suit == "Spades" || suit == "Clubs")
+		if(suit == "S" || suit == "C")
 			color = "Black";
 		else
 			color = "Red";
@@ -73,7 +37,6 @@ public class Card {
 	}
 
 	public String toString(){
-		return String.format("Suite: %s, Value: %d, Color: %s, Face-down: %s\n", suit, value, color, faceDown);
+		return String.format("%s%s", suit, value);
 	}
->>>>>>> 98c152859a66b8b1df8aa737157c4426edb3b8a9
 }
