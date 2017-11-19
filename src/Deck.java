@@ -32,4 +32,5 @@ static void shuffle(ArrayList<Card> deck)
       deck.set(i, a);
     }
   }
+
 }
