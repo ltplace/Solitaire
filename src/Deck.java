@@ -2,13 +2,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Deck {
-
-public static void main(String[] args) {
+public class Deck {	
+	
+public static ArrayList<Card> getDeck(){
 
 	ArrayList<Card> deck = new ArrayList<Card>();
 
-	final String[] setSuit = new String[] { "Clubs", "Spades", "Hearts", "Diamonds" };
+	final String[] setSuit = new String[] { "C", "S", "H", "D" };
 
 	for (int i = 0; i < 4; i++) {
 		for (int j = 1; j <= 13; j++) {
@@ -16,9 +16,9 @@ public static void main(String[] args) {
 			deck.add(card);
 		}
 	}
-	System.out.println(deck.toString());
 	shuffle(deck);
-	System.out.println(deck.toString());
+	return deck;
+}
 
 	}
 

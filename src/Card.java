@@ -8,7 +8,7 @@ public class Card {
 	public Card(String suit, int value){
 		this.suit = suit;
 		this.value = value;
-		if(suit == "Spades" || suit == "Clubs")
+		if(suit == "S" || suit == "C")
 			color = "Black";
 		else
 			color = "Red";
@@ -37,6 +37,7 @@ public class Card {
 	}
 
 	public String toString(){
-		return String.format("Suit: %s, Value: %d\n", suit, value);
+		return String.format("%s%s", suit, value);
 	}
 }
+
