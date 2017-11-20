@@ -6,10 +6,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.imageio.ImageIO;
 
-public class Deck implements Queue<Card>{	
-	
+public class Deck implements Queue<Card>{
+
 	protected static ArrayList<Card> deck;
-	
+
 	public Deck (){
 
 		deck = new ArrayList<Card>();
@@ -22,28 +22,28 @@ public class Deck implements Queue<Card>{
 				// Adds Club card images
 				if (i == 0) {
 					try {
-						card.FaceImg = ImageIO.read(new File("Deck//" + j + "_of_clubs.png"));
+						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_clubs.png"));
 						card.resize(card.FaceImg, 20, 40);
 					} catch (IOException e) {}
 				}
 				// Adds Spades card images
 				if (i == 1) {
 					try {
-						card.FaceImg = ImageIO.read(new File("Deck//" + j + "_of_spades.png"));
+						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_spades.png"));
 						card.resize(card.FaceImg, 20, 40);
 					} catch (IOException e) {}
 				}
 				// Adds Hearts card images
 				if (i == 2) {
 					try {
-						card.FaceImg = ImageIO.read(new File("Deck//" + j + "_of_hearts.png"));
+						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_hearts.png"));
 						card.resize(card.FaceImg, 20, 40);
 					} catch (IOException e) {}
 				}
 				// Adds Diamonds card images
 				if (i == 3) {
 					try {
-						card.FaceImg = ImageIO.read(new File("Deck//" + j + "_of_diamonds.png"));
+						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_diamonds.png"));
 						card.resize(card.FaceImg, 20, 40);
 					} catch (IOException e) {}
 				}
@@ -71,11 +71,11 @@ public class Deck implements Queue<Card>{
 	public void add2Rear(Card card) {
 		deck.add(card);
 	}
-	
+
 	// Added ability to remove from the front (like a Stack)
 	public Card removeFront() {
 		Card retval = deck.remove(0);
-		
+
 		return retval;
 	}
 
@@ -105,7 +105,7 @@ public class Deck implements Queue<Card>{
 		}
 		return retval;
 	}
-	
+
 	@Override
 	public String toString() {
 		return deck.toString();

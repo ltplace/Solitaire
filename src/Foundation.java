@@ -68,11 +68,11 @@ public class Foundation implements Stack<Card> {
 
 	@Override
 	public boolean isFull() {
-		if(arr.size() == 0) {
-			return false;
+		if(arr.size() == 13) {
+			return true;
 		}
 		else {
-			return true;
+			return false;
 		}
 	}
 	
