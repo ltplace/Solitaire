@@ -34,19 +34,19 @@ public class Card {
 		// Set card to show back side of card
 		try { this.BackImg = ImageIO.read(new File("resources//red_back.png")); } catch (IOException e) {}
 		Img = BackImg;
-		resize(Img, 20, 40);
+		
 	}
 
 	public void faceUp(boolean choice) {
 		if (choice == true) {
 			this.faceDown = false;
 			this.Img = this.FaceImg;
-			resize(this.Img, 20, 40);
+
 		}
 		else {
 			this.faceDown = true;
 			this.Img = this.BackImg;
-			resize(Img, 20, 40);
+
 		}
 	}
 
@@ -59,17 +59,6 @@ public class Card {
 		return String.format("%s%s%s", suit, value, grab);
 	}
 
-	//JAVAFX
-	public void resize(BufferedImage img, int width, int height) {
-		Image tmp = img.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-		BufferedImage tempImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-
-		Graphics2D g2d = tempImg.createGraphics();
-		g2d.drawImage(tmp, 0, 0, null);
-		g2d.dispose();
-
-		img = tempImg;
-	}
 
 	// Getter for faceDown
 	public boolean getFaceDown() {
