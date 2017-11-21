@@ -21,31 +21,19 @@ public class Deck implements Queue<Card>{
 				Card card = new Card(setSuit[i], j);
 				// Adds Club card images
 				if (i == 0) {
-					try {
-						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_clubs.png"));
-						card.resize(card.FaceImg, 20, 40);
-					} catch (IOException e) {}
+					card.FaceImg = "resources//" + j + "_of_clubs.png";
 				}
 				// Adds Spades card images
 				if (i == 1) {
-					try {
-						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_spades.png"));
-						card.resize(card.FaceImg, 20, 40);
-					} catch (IOException e) {}
+					card.FaceImg = "resources//" + j + "_of_spades.png";
 				}
 				// Adds Hearts card images
 				if (i == 2) {
-					try {
-						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_hearts.png"));
-						card.resize(card.FaceImg, 20, 40);
-					} catch (IOException e) {}
+					card.FaceImg = "resources//" + j + "_of_hearts.png";
 				}
 				// Adds Diamonds card images
 				if (i == 3) {
-					try {
-						card.FaceImg = ImageIO.read(new File("resources//" + j + "_of_diamonds.png"));
-						card.resize(card.FaceImg, 20, 40);
-					} catch (IOException e) {}
+					card.FaceImg = "resources//" + j + "_of_diamonds.png";
 				}
 				// Add to deck
 				deck.add(card);
@@ -69,7 +57,7 @@ public class Deck implements Queue<Card>{
 
 	@Override
 	public void add2Rear(Card card) {
-		deck.add(card);
+		deck.add(0, card);
 	}
 
 	// Added ability to remove from the front (like a Stack)
