@@ -222,11 +222,6 @@ public class GUI extends Main{
 		Tableau_6.setIcon(new ImageIcon(GUI.class.getResource("/resources/red_back.png")));
 		frame.getContentPane().add(Tableau_6);
 		
-		JButton button_5 = new JButton("");
-		frame.getContentPane().add(button_5);
-		
-		JButton button_6 = new JButton("");
-		frame.getContentPane().add(button_6);
 	}
 
 }
