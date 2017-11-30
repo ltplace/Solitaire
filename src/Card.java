@@ -23,6 +23,7 @@ public class Card {
 	protected String FaceImg = null;
 	protected String BackImg = null;
 	protected String Img = null;
+	protected JButton card = null;
 
 	public Card (String suit, int value){
 		this.suit = suit;
