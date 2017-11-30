@@ -47,11 +47,11 @@ public class Main {
 	}
 	
 	// Method that checks for valid moves between Tableaus
-	public static void TabMoveChecker(int origTab, int index, int newTab) {
+	public static boolean TabMoveChecker(int origTab, int index, int newTab) {
 		
 		// Check to see if move is valid for multiple cards
 		boolean flag = isGrabbable(origTab, index);
-		if (flag == false) return;
+		if (flag == false) return false;
 		
 		// Send to Tableau class to see if it can be added
 		boolean valid = Tabs.get(newTab).addTo(Tabs.get(origTab).get(index));
@@ -73,6 +73,10 @@ public class Main {
 					Tabs.get(newTab).push(Tabs.get(origTab).remove(index)); // Continue to move each card moved
 				}
 			}
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	
@@ -108,7 +112,7 @@ public class Main {
 	}
 	
 	// Method that checks for valid moves from Tableaus to Foundations
-	public static void FndMoveChecker(int tab, int fnd) {
+	public static boolean FndMoveChecker(int tab, int fnd) {
 		boolean valid = Fnds.get(fnd).addTo(Tabs.get(tab).top()); // Sends to Tableau
 		if (valid == true) {
 			Tabs.get(tab).pop();
@@ -116,6 +120,10 @@ public class Main {
 				Tabs.get(tab).top().faceUp(true);
 				Tabs.get(tab).top().grabbable = true;
 			}
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	
