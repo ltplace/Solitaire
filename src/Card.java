@@ -1,15 +1,4 @@
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
-
-import javafx.application.Application;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.WritableImage;
 
 
 public class Card {
@@ -24,7 +13,9 @@ public class Card {
 	protected String BackImg = null;
 	protected String Img = null;
 	protected JButton card = null;
-
+	
+	
+	
 	public Card (String suit, int value){
 		this.suit = suit;
 		this.value = value;

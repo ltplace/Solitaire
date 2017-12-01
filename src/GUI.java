@@ -25,17 +25,6 @@ public class GUI extends Main{
 	private JButton Foundation_2;
 	private JButton Foundation_3;
 
-	
-	
-	// Variables for 
-	int T0space = 49;
-	int T1space = 49;
-	int T2space = 49;
-	int T3space = 49;
-	int T4space = 49;
-	int T5space = 49;
-	int T6space = 49;
-
 	/**
 	 * Launch the application.
 	 */
@@ -88,7 +77,6 @@ public class GUI extends Main{
 				Main.moveToWastePile();
 				if (Main.WP.isMT()) {
 					btnWastePile.setVisible(false);
-					btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
 				}
 				else {
 					btnWastePile.setVisible(true);
@@ -113,14 +101,18 @@ public class GUI extends Main{
 					boolean transfer = FndMoveChecker(tabIndex, 0);
 					if (!Fnds.get(0).isMT()) {
 						Foundation_0.setIcon(new ImageIcon(GUI.class.getResource(Fnds.get(0).top().Img)));
-						Tabs.get(tabIndex).get(cardIndex).card.setIcon(new ImageIcon(GUI.class.getResource(Fnds.get(0).top().Img)));
+						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 					}
 					if (transfer == true) {
+						System.out.println(Fnds.get(0).top().card);
 						frame.remove(Fnds.get(0).top().card);
 						Fnds.get(0).top().card = null;
 						frame.revalidate();
 						frame.repaint();
 						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
+							Tabs.get(tabIndex).space -= 30;
+						}
 					}
 					transfer = false;
 					tabPressed = false;
@@ -153,11 +145,15 @@ public class GUI extends Main{
 						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 					}
 					if (transfer == true) {
+						System.out.println(Fnds.get(1).top().card);
 						frame.remove(Fnds.get(1).top().card);
 						Fnds.get(1).top().card = null;
 						frame.revalidate();
 						frame.repaint();
 						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
+							Tabs.get(tabIndex).space -= 30;
+						}
 					}
 					transfer = false;
 					tabPressed = false;
@@ -183,17 +179,21 @@ public class GUI extends Main{
 		Foundation_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (tabPressed == true) {
-					boolean transfer = FndMoveChecker(tabIndex, 0);
+					boolean transfer = FndMoveChecker(tabIndex, 2);
 					if (!Main.Fnds.get(2).isMT()) {
 						Foundation_2.setIcon(new ImageIcon(GUI.class.getResource(Main.Fnds.get(2).top().Img)));
 						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 					}
 					if (transfer == true) {
+						System.out.println(Fnds.get(2).top().card);
 						frame.remove(Fnds.get(2).top().card);
 						Fnds.get(2).top().card = null;
 						frame.revalidate();
 						frame.repaint();
 						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
+							Tabs.get(tabIndex).space -= 30;
+						}
 					}
 					transfer = false;
 					tabPressed = false;
@@ -226,11 +226,20 @@ public class GUI extends Main{
 						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 					}
 					if (transfer == true) {
+						System.out.println(Fnds.get(3).top().card);
 						frame.remove(Fnds.get(3).top().card);
 						Fnds.get(3).top().card = null;
 						frame.revalidate();
 						frame.repaint();
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						if (Tabs.get(tabIndex).isMT()) {	//FIXME
+							
+						}
+						else {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						}
+						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
+							Tabs.get(tabIndex).space -= 30;
+						}
 					}
 					transfer = false;
 					tabPressed = false;
@@ -251,34 +260,45 @@ public class GUI extends Main{
 		Foundation_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/red_back.png")));
 		frame.getContentPane().add(Foundation_3);
 		
-		Tab0(Tabs.get(0).size());
-		Tab1(Tabs.get(1).size());
-		Tab2(Tabs.get(2).size());
-		Tab3(Tabs.get(3).size());
-		Tab4(Tabs.get(4).size());
-		Tab5(Tabs.get(5).size());
-		Tab6(Tabs.get(6).size());
+		// Create columns
+		Tabs.get(0).space = 0;
+		Tab1(Tabs.get(1).size(), 0);
+		Tab0(Tabs.get(0).size(), 0);
+		Tab2(Tabs.get(2).size(), 0);
+		Tab3(Tabs.get(3).size(), 0);
+		Tab4(Tabs.get(4).size(), 0);
+		Tab5(Tabs.get(5).size(), 0);
+		Tab6(Tabs.get(6).size(), 0);
 	}
 	
-	public void Tab0(int num) {
+	public void Tab0(int num, int k) {
 		JButton Tableau_0;
-		for(int i = 0; i < num; i++, T0space += 30) {
+		for(int i = 0; i < num; i++) {
+			int index = k;
+			int indexInsideLoop = index;
 			Tableau_0 = new JButton("");
 			Tableau_0.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tabPressed == false && wpPressed == false) {
 						tabPressed = true;
 						tabIndex = 0;
-						cardIndex = Tabs.get(0).size()-1;
+						cardIndex = indexInsideLoop;
 					}
 					else if (tabPressed == true && tabIndex != 0) {
+						int sBefore = Tabs.get(0).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 0);
+						int sAfter = Tabs.get(0).size();
 						if (transfer == true) {
-							frame.remove(Tabs.get(0).top().card);
-							Tabs.get(0).top().card = null;
+							for(int i = 1; i < sBefore - sAfter + 1; i++) {
+								frame.remove(Tabs.get(0).get(Tabs.get(0).size()-i).card);
+								Tabs.get(0).get(Tabs.get(0).size()-i).card = null;
+								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+							if (Tabs.get(tabIndex).space != 0) 
+								Tabs.get(tabIndex).space -= 30;
+							}
+							Tab0(sBefore - sAfter, Tabs.get(0).size() - (sBefore - sAfter));
 							frame.revalidate();
 							frame.repaint();
-							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 						}
 						tabIndex = 0;
 						cardIndex = 0;
@@ -286,38 +306,55 @@ public class GUI extends Main{
 						transfer = false;
 					}
 					else if (wpPressed == true) {
-						WPtoTabChecker(0);
+						boolean transfer = WPtoTabChecker(0);
 						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						if (transfer == true) {
+							Tab0(1, Tabs.get(0).size()- 1);
+							frame.revalidate();
+							frame.repaint();
+						}
 					}
+					wpPressed = false;
 				}
 			});
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_0, 0, SpringLayout.EAST, Foundation_0);
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_0, 0, SpringLayout.NORTH, Foundation_0);
-			Tableau_0.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(0).get(i).Img)));
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_0, Tabs.get(0).space, SpringLayout.NORTH, Tabs.get(1).get(0).card);
+			Tableau_0.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(0).get(index).Img)));
 			frame.getContentPane().add(Tableau_0);
-			Tabs.get(0).get(i).card = Tableau_0;
+			Tabs.get(0).get(index).card = Tableau_0;
+			Tabs.get(0).space += 30;
 		}
 	}
 	
-	public void Tab1(int num) {
+	public void Tab1(int num, final int k) {	//TODO continue to work on indices and fix zero index
 		JButton Tableau_1;
-		for(int i = 0; i < num; i++, T1space += 30) {
+		for(int i = 0; i < num; i++) {
+			int index = k + i;
+			int indexInLoop = index;
 			Tableau_1 = new JButton("");
 			Tableau_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tabPressed == false && wpPressed == false) {
 						tabPressed = true;
 						tabIndex = 1;
-						cardIndex = Tabs.get(1).size()-1;
+						cardIndex = indexInLoop;
+						System.out.println(indexInLoop);
 					}
 					else if (tabPressed == true && tabIndex != 1) {
+						int sBefore = Tabs.get(tabIndex).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 1);
+						int sAfter = Tabs.get(tabIndex).size();
 						if (transfer == true) {
-							frame.remove(Tabs.get(1).top().card);
-							Tabs.get(1).top().card = null;
+							for(int i = 1; i < sBefore - sAfter + 1; i++) {
+								frame.remove(Tabs.get(1).get(Tabs.get(1).size()-i).card);
+								Tabs.get(1).get(Tabs.get(1).size()-i).card = null;
+								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								if (Tabs.get(tabIndex).space != 49) 
+									Tabs.get(tabIndex).space -= 30;
+							}
+							Tab1(sBefore - sAfter, Tabs.get(1).size()- (sBefore - sAfter));
 							frame.revalidate();
 							frame.repaint();
-							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 						}
 						tabIndex = 0;
 						cardIndex = 0;
@@ -325,40 +362,56 @@ public class GUI extends Main{
 						transfer = false;
 					}
 					else if (wpPressed == true) {
-						WPtoTabChecker(1);
+						boolean transfer = WPtoTabChecker(1);
 						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
-						//Tabs.get(index);
+						if (transfer == true) {
+							Tab1(1, Tabs.get(1).size()- 1);
+							frame.revalidate();
+							frame.repaint();
+						}
 					}
+					wpPressed = false;
 				}
 			});
 			springLayout.putConstraint(SpringLayout.NORTH, Tableau_1, 0, SpringLayout.NORTH, Tableau_1);
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_1, T1space, SpringLayout.SOUTH, Foundation_1);
-			Tableau_1.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(1).get(i).Img)));
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_1, Tabs.get(1).space, SpringLayout.SOUTH, Foundation_1);
+			Tableau_1.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(1).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_1, 0, SpringLayout.EAST, Foundation_1);
 			frame.getContentPane().add(Tableau_1);
-			Tabs.get(1).get(i).card = Tableau_1;
+			Tabs.get(1).get(index).card = Tableau_1;
+			Tabs.get(1).space += 30;
 		}
 	}
 	
-	public void Tab2(int num) {
+	public void Tab2(int num, final int k) {
 		JButton Tableau_2;
-		for(int i = 0; i < num; i++, T2space += 30) {
+		for(int i = 0; i < num; i++) {
+			int index = k + i;
+			int indexInLoop = index;
 			Tableau_2 = new JButton("");
 			Tableau_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tabPressed == false && wpPressed == false) {
 						tabPressed = true;
 						tabIndex = 2;
-						cardIndex = Tabs.get(2).size()-1;
+						cardIndex = indexInLoop;
+						System.out.println(indexInLoop);
 					}
 					else if (tabPressed == true && tabIndex != 2) {
+						int sBefore = Tabs.get(tabIndex).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 2);
+						int sAfter = Tabs.get(tabIndex).size();
 						if (transfer == true) {
-							frame.remove(Tabs.get(2).top().card);
-							Tabs.get(2).top().card = null;
+							for(int i = 1; i < sBefore - sAfter + 1; i++) {
+								frame.remove(Tabs.get(2).get(Tabs.get(2).size()-i).card);
+								Tabs.get(2).get(Tabs.get(2).size()-i).card = null;
+								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								if (Tabs.get(tabIndex).space != 49) 
+									Tabs.get(tabIndex).space -= 30;
+							}
+							Tab2(sBefore - sAfter, Tabs.get(2).size()- (sBefore - sAfter));
 							frame.revalidate();
 							frame.repaint();
-							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 						}
 						tabIndex = 0;
 						cardIndex = 0;
@@ -366,38 +419,55 @@ public class GUI extends Main{
 						transfer = false;
 					}
 					else if (wpPressed == true) {
-						WPtoTabChecker(2);
+						boolean transfer = WPtoTabChecker(2);
 						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						if (transfer == true) {
+							Tab2(1, Tabs.get(2).size()- 1);
+							frame.revalidate();
+							frame.repaint();
+						}
 					}
+					wpPressed = false;
 				}
 			});
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_2, T2space, SpringLayout.SOUTH, Foundation_2);
-			Tableau_2.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(2).get(i).Img)));
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_2, Tabs.get(2).space, SpringLayout.SOUTH, Foundation_2);
+			Tableau_2.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(2).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_2, 0, SpringLayout.WEST, Foundation_2);
 			frame.getContentPane().add(Tableau_2);
-			Tabs.get(2).get(i).card = Tableau_2;
+			Tabs.get(2).get(index).card = Tableau_2;
+			Tabs.get(2).space += 30;
 		}
 	}
 	
-	public void Tab3(int num) {
+	public void Tab3(int num, final int k) {
 		JButton Tableau_3;
-		for(int i = 0; i < num; i++, T3space += 30) {
+		for(int i = 0; i < num; i++) {
+			int index = k + i;
+			int indexInLoop = index;
 			Tableau_3 = new JButton("");
 			Tableau_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tabPressed == false && wpPressed == false) {
 						tabPressed = true;
 						tabIndex = 3;
-						cardIndex = Tabs.get(3).size()-1;
+						cardIndex = indexInLoop;;
+						System.out.println(indexInLoop);
 					}
 					else if (tabPressed == true && tabIndex != 3) {
+						int sBefore = Tabs.get(tabIndex).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 3);
+						int sAfter = Tabs.get(tabIndex).size();
 						if (transfer == true) {
-							frame.remove(Tabs.get(3).top().card);
-							Tabs.get(3).top().card = null;
+							for(int i = 1; i < sBefore - sAfter + 1; i++) {
+								frame.remove(Tabs.get(3).get(Tabs.get(3).size()-i).card);
+								Tabs.get(3).get(Tabs.get(3).size()-i).card = null;
+								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								if (Tabs.get(tabIndex).space != 49) 
+									Tabs.get(tabIndex).space -= 30;
+							}
+							Tab3(sBefore - sAfter, Tabs.get(3).size()- (sBefore - sAfter));
 							frame.revalidate();
 							frame.repaint();
-							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 						}
 						tabIndex = 0;
 						cardIndex = 0;
@@ -405,38 +475,55 @@ public class GUI extends Main{
 						transfer = false;
 					}
 					else if (wpPressed == true) {
-						WPtoTabChecker(3);
+						boolean transfer = WPtoTabChecker(3);
 						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						if (transfer == true) {
+							Tab3(1, Tabs.get(3).size()- 1);
+							frame.revalidate();
+							frame.repaint();
+						}
 					}
+					wpPressed = false;
 				}
 			});
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_3, T3space, SpringLayout.SOUTH, Foundation_3);
-			Tableau_3.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(3).get(i).Img)));
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_3, Tabs.get(3).space, SpringLayout.SOUTH, Foundation_3);
+			Tableau_3.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(3).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_3, 0, SpringLayout.EAST, Foundation_3);
 			frame.getContentPane().add(Tableau_3);
-			Tabs.get(3).get(i).card = Tableau_3;
+			Tabs.get(3).get(index).card = Tableau_3;
+			Tabs.get(3).space += 30;
 		}
 	}
 	
-	public void Tab4(int num) {
+	public void Tab4(int num, final int k) {
 		JButton Tableau_4;
-		for(int i = 0; i < num; i++, T4space += 30) {
+		for(int i = 0; i < num; i++) {
+			int index = k + i;
+			int indexInLoop = index;
 			Tableau_4 = new JButton("");
 			Tableau_4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tabPressed == false && wpPressed == false) {
 						tabPressed = true;
 						tabIndex = 4;
-						cardIndex = Tabs.get(4).size()-1;
+						cardIndex = indexInLoop;
+						System.out.println(indexInLoop);
 					}
 					else if (tabPressed == true && tabIndex != 4) {
+						int sBefore = Tabs.get(tabIndex).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 4);
+						int sAfter = Tabs.get(tabIndex).size();
 						if (transfer == true) {
-							frame.remove(Tabs.get(4).top().card);
-							Tabs.get(4).top().card = null;
+							for(int i = 1; i < sBefore - sAfter + 1; i++) {
+								frame.remove(Tabs.get(4).get(Tabs.get(4).size()-i).card);
+								Tabs.get(4).get(Tabs.get(4).size()-i).card = null;
+								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img))); //TODO FIXME
+								if (Tabs.get(tabIndex).space != 49) 
+									Tabs.get(tabIndex).space -= 30;
+							}
+							Tab4(sBefore - sAfter, Tabs.get(4).size()- (sBefore - sAfter));
 							frame.revalidate();
 							frame.repaint();
-							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 						}
 						tabIndex = 0;
 						cardIndex = 0;
@@ -444,40 +531,57 @@ public class GUI extends Main{
 						transfer = false;
 					}
 					else if (wpPressed == true) {
-						WPtoTabChecker(4);
+						boolean transfer = WPtoTabChecker(4);
 						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						if (transfer == true) {
+							Tab4(1, Tabs.get(4).size()- 1);
+							frame.revalidate();
+							frame.repaint();
+						}
 					}
+					wpPressed = false;
 				}
 			});
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_4, T4space, SpringLayout.SOUTH, btnWastePile);
-			Tableau_4.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(4).get(i).Img)));
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_4, Tabs.get(4).space, SpringLayout.SOUTH, btnWastePile);
+			Tableau_4.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(4).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_4, 5, SpringLayout.EAST, Tabs.get(3).get(0).card);
 			frame.getContentPane().add(Tableau_4);
-			Tabs.get(4).get(i).card = Tableau_4;
+			Tabs.get(4).get(index).card = Tableau_4;
+			Tabs.get(4).space += 30;
 		}
 	}
 	
-	public void Tab5(int num) {
+	public void Tab5(int num, final int k) {
 		JButton Tableau_5;
-		for(int i = 0; i < num; i++, T5space += 30) {
+		for(int i = 0; i < num; i++) {
+			int index = k + i;
+			int indexInLoop = index;
 			Tableau_5 = new JButton("");
 			Tableau_5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tabPressed == false && wpPressed == false) {
 						tabPressed = true;
 						tabIndex = 5;
-						cardIndex = Tabs.get(5).size()-1;
-						frame.getContentPane().remove(Tabs.get(5).get(cardIndex).card);
-						Tabs.get(5).get(cardIndex).card.setVisible(false);
+						cardIndex = indexInLoop;
+						System.out.println(indexInLoop);
+						//frame.getContentPane().remove(Tabs.get(5).get(cardIndex).card);
+						//Tabs.get(5).get(cardIndex).card.setVisible(false);
 					}
 					else if (tabPressed == true && tabIndex != 5) {
+						int sBefore = Tabs.get(tabIndex).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 5);
+						int sAfter = Tabs.get(tabIndex).size();
 						if (transfer == true) {
-							frame.remove(Tabs.get(5).top().card);
-							Tabs.get(5).top().card = null;
+							for(int i = 1; i < sBefore - sAfter + 1; i++) {
+								frame.remove(Tabs.get(5).get(Tabs.get(5).size()-i).card);
+								Tabs.get(5).get(Tabs.get(5).size()-i).card = null;
+								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								if (Tabs.get(tabIndex).space != 49) 
+									Tabs.get(tabIndex).space -= 30;
+							}
+							Tab5(sBefore - sAfter, Tabs.get(5).size()- (sBefore - sAfter));
 							frame.revalidate();
 							frame.repaint();
-							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 						}
 						tabIndex = 0;
 						cardIndex = 0;
@@ -485,38 +589,55 @@ public class GUI extends Main{
 						transfer = false;
 					}
 					else if (wpPressed == true) {
-						WPtoTabChecker(5);
+						boolean transfer = WPtoTabChecker(5);
 						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						if (transfer == true) {
+							Tab5(1, Tabs.get(5).size()- 1);
+							frame.revalidate();
+							frame.repaint();
+						}
 					}
+					wpPressed = false;
 				}
 			});
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_5, T5space, SpringLayout.SOUTH, btnWastePile);
-			Tableau_5.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(5).get(i).Img)));
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_5, Tabs.get(5).space, SpringLayout.SOUTH, btnWastePile);
+			Tableau_5.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(5).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_5, 6, SpringLayout.EAST, Tabs.get(4).get(0).card);
 			frame.getContentPane().add(Tableau_5);
-			Tabs.get(5).get(i).card = Tableau_5;
+			Tabs.get(5).get(index).card = Tableau_5;
+			Tabs.get(5).space += 30;
 		}
 	}
 	
-	public void Tab6(int num) {
+	public void Tab6(int num, final int k) {
 		JButton Tableau_6;
-		for(int i = 0; i < num; i++, T6space += 30) {
+		for(int i = 0; i < num; i++) {
+			int index = k + i;
+			int indexInLoop = index;
 			Tableau_6 = new JButton("");
 			Tableau_6.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if (tabPressed == false && wpPressed == false) {
 						tabPressed = true;
 						tabIndex = 6;
-						cardIndex = Tabs.get(6).size()-1;
+						cardIndex = indexInLoop;
+						System.out.println(indexInLoop);
 					}
 					else if (tabPressed == true && tabIndex != 6) {
+						int sBefore = Tabs.get(tabIndex).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 6);
+						int sAfter = Tabs.get(tabIndex).size();
 						if (transfer == true) {
-							frame.remove(Tabs.get(6).top().card);
-							Tabs.get(6).top().card = null;
+							for(int i = 1; i < sBefore - sAfter + 1; i++) {
+								frame.remove(Tabs.get(6).get(Tabs.get(6).size()-i).card);
+								Tabs.get(6).get(Tabs.get(6).size()-i).card = null;
+								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								if (Tabs.get(tabIndex).space != 49) 
+									Tabs.get(tabIndex).space -= 30;
+							}
+							Tab6(sBefore - sAfter, Tabs.get(6).size()- (sBefore - sAfter));
 							frame.revalidate();
 							frame.repaint();
-							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 						}
 						tabIndex = 0;
 						cardIndex = 0;
@@ -524,16 +645,23 @@ public class GUI extends Main{
 						transfer = false;
 					}
 					else if (wpPressed == true) {
-						WPtoTabChecker(6);
+						boolean transfer = WPtoTabChecker(6);
 						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						if (transfer == true) {
+							Tab6(1, Tabs.get(6).size()- 1);
+							frame.revalidate();
+							frame.repaint();
+						}
 					}
+					wpPressed = false;
 				}
 			});
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_6, T6space, SpringLayout.SOUTH, btnWastePile);
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_6, Tabs.get(6).space, SpringLayout.SOUTH, btnWastePile);
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_6, 5, SpringLayout.EAST, Tabs.get(5).get(0).card);
-			Tableau_6.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(6).get(i).Img)));
+			Tableau_6.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(6).get(index).Img)));
 			frame.getContentPane().add(Tableau_6);
-			Tabs.get(6).get(i).card = Tableau_6;
+			Tabs.get(6).get(index).card = Tableau_6;
+			Tabs.get(6).space += 30;
 		}
 	}
 }

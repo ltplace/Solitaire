@@ -51,10 +51,14 @@ public class Main {
 		
 		// Check to see if move is valid for multiple cards
 		boolean flag = isGrabbable(origTab, index);
-		if (flag == false) return false;
+		if (flag == false) {
+			System.out.println(flag + " Not grabbable");
+			return false;
+		}
 		
 		// Send to Tableau class to see if it can be added
 		boolean valid = Tabs.get(newTab).addTo(Tabs.get(origTab).get(index));
+		System.out.println(valid + " Move from tab to tab from " + Tabs.get(origTab).get(index) + " to " + Tabs.get(newTab).top());
 		if (valid == true) {
 			while (true) {
 				if (Tabs.get(origTab).get(index) == Tabs.get(origTab).top()) {	// If current place in Tableau is top
@@ -83,6 +87,7 @@ public class Main {
 	// Method that checks for valid moves between WastePile and Foundation
 	public static void WPtoFndChecker(int fnd) {
 		boolean valid = Fnds.get(fnd).addTo(WP.top());
+		System.out.println(valid + " Move from WP to Fnd");
 		if (valid == true) {
 			WP.pop();
 			if (WP.isFull()) {
@@ -96,8 +101,9 @@ public class Main {
 	}
 	
 	// Method that checks for valid moves between Tableaus and WastePile
-	public static void WPtoTabChecker(int Tab) {
+	public static boolean WPtoTabChecker(int Tab) {
 		boolean valid = Tabs.get(Tab).addTo(WP.top());
+		System.out.println(valid + " Move from WP to Tab");
 		if (valid == true) {
 			Tabs.get(Tab).push(WP.pop());
 			Tabs.get(Tab).setGrabbable();
@@ -108,12 +114,24 @@ public class Main {
 			WP.top().faceUp(true);
 			WP.top().grabbable = true;
 			}
+			return true;
+		}
+		else {
+			return false;
 		}
 	}
 	
 	// Method that checks for valid moves from Tableaus to Foundations
 	public static boolean FndMoveChecker(int tab, int fnd) {
+		if (!Fnds.get(fnd).isMT()) {
+			System.out.println("Old top of Fnd: " + Fnds.get(fnd).top());
+		}
+		else {
+			System.out.println("Old top of Fnd: Empty");
+		}
 		boolean valid = Fnds.get(fnd).addTo(Tabs.get(tab).top()); // Sends to Tableau
+		System.out.println(valid + " Move from tab to Fnd from " + Tabs.get(tab).top() + " to " + Fnds.get(fnd));
+		System.out.println("New top of Fnd: " + Fnds.get(fnd).top());
 		if (valid == true) {
 			Tabs.get(tab).pop();
 			if (!Tabs.get(tab).isMT()) {
