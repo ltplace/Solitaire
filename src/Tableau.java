@@ -4,6 +4,7 @@ import java.lang.IndexOutOfBoundsException;
 public class Tableau implements Stack<Card> {
 
 	protected ArrayList<Card> Column = new ArrayList<Card>();
+	protected int space = 49;
 
 	// Method for checking valid movements between Tableaus
 	public boolean addTo(Card card) {
@@ -24,6 +25,11 @@ public class Tableau implements Stack<Card> {
 			}
 		}
 	}	
+	public int indexOf(int index) {
+		index = Column.indexOf(index);
+		return index;
+	}
+	
 	// May not need for end product
 	public Card get(int index) {
 		return Column.get(index);
