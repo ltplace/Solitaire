@@ -6,7 +6,6 @@ import javax.swing.SpringLayout;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -87,6 +86,9 @@ public class GUI extends Main{
 		Deck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.moveToWastePile();
+				if (deck.isMTQ() && WP.isMT()) {
+					Deck.setVisible(false);
+				}
 				btnWastePile.setVisible(true);
 			try {
 				btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
