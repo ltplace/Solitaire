@@ -198,7 +198,7 @@ public class GUI extends Main{
 					wpPressed = false;
 				}
 				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
-					Foundation_1.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
+					Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
 				}
 			}
 		});
@@ -247,7 +247,7 @@ public class GUI extends Main{
 					wpPressed = false;
 				}
 				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
-					Foundation_2.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
+					Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
 				}
 			}
 		});
@@ -297,7 +297,7 @@ public class GUI extends Main{
 					wpPressed = false;
 				}
 				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
-					Foundation_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
+					Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
 				}
 			}
 		});
