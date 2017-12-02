@@ -11,7 +11,6 @@ public class Deck implements Queue<Card>{
 	protected static ArrayList<Card> deck;
 
 	public Deck (){
-
 		deck = new ArrayList<Card>();
 /*
 * flyweight design is used for card creation

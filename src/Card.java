@@ -1,5 +1,7 @@
 import javax.swing.JButton;
 
+/* Cards which will be used in the deck
+*/
 public class Card {
 
 	// Attributes
