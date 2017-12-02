@@ -66,6 +66,7 @@ public class Foundation implements Stack<Card> {
 		return retval;
 	}
 
+	//win condition
 	@Override
 	public boolean isFull() {
 		if(arr.size() == 13) {
