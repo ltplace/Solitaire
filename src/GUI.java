@@ -24,6 +24,14 @@ public class GUI extends Main{
 	private JButton Foundation_1;
 	private JButton Foundation_2;
 	private JButton Foundation_3;
+	private boolean t0Empty = true;
+	private boolean t1Empty = true;
+	private boolean t2Empty = true;
+	private boolean t3Empty = true;
+	private boolean t4Empty = true;
+	private boolean t5Empty = true;
+	private boolean t6Empty = true;
+	ArrayList<JButton> emptyCards = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -62,6 +70,10 @@ public class GUI extends Main{
 		springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
 		
+		// Sets temporary values for emptyCards list
+		emptyCards.add(new JButton());
+		emptyCards.add(new JButton());
+		
 		btnWastePile = new JButton("Waste Pile");
 		btnWastePile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -97,11 +109,14 @@ public class GUI extends Main{
 		springLayout.putConstraint(SpringLayout.WEST, Foundation_0, 10, SpringLayout.WEST, frame.getContentPane());
 		Foundation_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				if (tabPressed == true) {
 					boolean transfer = FndMoveChecker(tabIndex, 0);
 					if (!Fnds.get(0).isMT()) {
 						Foundation_0.setIcon(new ImageIcon(GUI.class.getResource(Fnds.get(0).top().Img)));
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						try {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 					}
 					if (transfer == true) {
 						System.out.println(Fnds.get(0).top().card);
@@ -109,7 +124,9 @@ public class GUI extends Main{
 						Fnds.get(0).top().card = null;
 						frame.revalidate();
 						frame.repaint();
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						try {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
 							Tabs.get(tabIndex).space -= 30;
 						}
@@ -119,6 +136,7 @@ public class GUI extends Main{
 					tabIndex = 0;
 					cardIndex = 0;
 				}
+				
 				if (wpPressed == true) {
 					WPtoFndChecker(0);
 					if (!Fnds.get(0).isMT()) {
@@ -142,7 +160,9 @@ public class GUI extends Main{
 					boolean transfer = FndMoveChecker(tabIndex, 1);
 					if (!Main.Fnds.get(1).isMT()) {
 						Foundation_1.setIcon(new ImageIcon(GUI.class.getResource(Main.Fnds.get(1).top().Img)));
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						try {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 					}
 					if (transfer == true) {
 						System.out.println(Fnds.get(1).top().card);
@@ -150,7 +170,9 @@ public class GUI extends Main{
 						Fnds.get(1).top().card = null;
 						frame.revalidate();
 						frame.repaint();
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						try {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
 							Tabs.get(tabIndex).space -= 30;
 						}
@@ -182,7 +204,9 @@ public class GUI extends Main{
 					boolean transfer = FndMoveChecker(tabIndex, 2);
 					if (!Main.Fnds.get(2).isMT()) {
 						Foundation_2.setIcon(new ImageIcon(GUI.class.getResource(Main.Fnds.get(2).top().Img)));
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						try {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 					}
 					if (transfer == true) {
 						System.out.println(Fnds.get(2).top().card);
@@ -190,7 +214,9 @@ public class GUI extends Main{
 						Fnds.get(2).top().card = null;
 						frame.revalidate();
 						frame.repaint();
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						try {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
 							Tabs.get(tabIndex).space -= 30;
 						}
@@ -223,7 +249,9 @@ public class GUI extends Main{
 					boolean transfer = FndMoveChecker(tabIndex, 3);
 					if (!Fnds.get(3).isMT()) {
 						Foundation_3.setIcon(new ImageIcon(GUI.class.getResource(Main.Fnds.get(3).top().Img)));
-						Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						try {
+							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 					}
 					if (transfer == true) {
 						System.out.println(Fnds.get(3).top().card);
@@ -231,12 +259,9 @@ public class GUI extends Main{
 						Fnds.get(3).top().card = null;
 						frame.revalidate();
 						frame.repaint();
-						if (Tabs.get(tabIndex).isMT()) {	//FIXME
-							
-						}
-						else {
+						try {
 							Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
-						}
+						} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 						if(Tabs.get(tabIndex).space != 49 || Tabs.get(tabIndex).space != 0) {
 							Tabs.get(tabIndex).space -= 30;
 						}
@@ -292,7 +317,9 @@ public class GUI extends Main{
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(0).get(Tabs.get(0).size()-i).card);
 								Tabs.get(0).get(Tabs.get(0).size()-i).card = null;
-								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								try {
+									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 							if (Tabs.get(tabIndex).space != 0) 
 								Tabs.get(tabIndex).space -= 30;
 							}
@@ -318,11 +345,21 @@ public class GUI extends Main{
 				}
 			});
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_0, 0, SpringLayout.EAST, Foundation_0);
-			springLayout.putConstraint(SpringLayout.NORTH, Tableau_0, Tabs.get(0).space, SpringLayout.NORTH, Tabs.get(1).get(0).card);
+			springLayout.putConstraint(SpringLayout.NORTH, Tableau_0, Tabs.get(0).space, SpringLayout.NORTH, emptyCards.get(1));
 			Tableau_0.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(0).get(index).Img)));
 			frame.getContentPane().add(Tableau_0);
-			Tabs.get(0).get(index).card = Tableau_0;
-			Tabs.get(0).space += 30;
+			if (t0Empty == true) {
+				Tableau_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
+				t0Empty = false;
+				Tableau_0.setVisible(false);
+				i--;
+				emptyCards.set(0, Tableau_0);
+			}	
+			else {
+				emptyCards.get(0).setVisible(false);
+				Tabs.get(0).get(index).card = Tableau_0;
+				Tabs.get(0).space += 30;
+			}
 		}
 	}
 	
@@ -348,7 +385,9 @@ public class GUI extends Main{
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(1).get(Tabs.get(1).size()-i).card);
 								Tabs.get(1).get(Tabs.get(1).size()-i).card = null;
-								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								try {
+									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 								if (Tabs.get(tabIndex).space != 49) 
 									Tabs.get(tabIndex).space -= 30;
 							}
@@ -378,8 +417,18 @@ public class GUI extends Main{
 			Tableau_1.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(1).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_1, 0, SpringLayout.EAST, Foundation_1);
 			frame.getContentPane().add(Tableau_1);
-			Tabs.get(1).get(index).card = Tableau_1;
-			Tabs.get(1).space += 30;
+			if (t1Empty == true) {
+				Tableau_1.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
+				Tableau_1.setVisible(false);
+				t1Empty = false;
+				i--;
+				emptyCards.set(1, Tableau_1);
+			}
+			else {
+				emptyCards.get(1).setVisible(false);
+				Tabs.get(1).get(index).card = Tableau_1;
+				Tabs.get(1).space += 30;
+			}
 		}
 	}
 	
@@ -405,7 +454,9 @@ public class GUI extends Main{
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(2).get(Tabs.get(2).size()-i).card);
 								Tabs.get(2).get(Tabs.get(2).size()-i).card = null;
-								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								try {
+									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 								if (Tabs.get(tabIndex).space != 49) 
 									Tabs.get(tabIndex).space -= 30;
 							}
@@ -434,8 +485,18 @@ public class GUI extends Main{
 			Tableau_2.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(2).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_2, 0, SpringLayout.WEST, Foundation_2);
 			frame.getContentPane().add(Tableau_2);
-			Tabs.get(2).get(index).card = Tableau_2;
-			Tabs.get(2).space += 30;
+			if (t2Empty == true) {
+				Tableau_2.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
+				Tableau_2.setVisible(false);
+				t2Empty = false;
+				i--;
+				emptyCards.add(Tableau_2);
+			}
+			else {
+				emptyCards.get(2).setVisible(false);
+				Tabs.get(2).get(index).card = Tableau_2;
+				Tabs.get(2).space += 30;
+			}
 		}
 	}
 	
@@ -461,7 +522,9 @@ public class GUI extends Main{
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(3).get(Tabs.get(3).size()-i).card);
 								Tabs.get(3).get(Tabs.get(3).size()-i).card = null;
-								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								try {
+									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 								if (Tabs.get(tabIndex).space != 49) 
 									Tabs.get(tabIndex).space -= 30;
 							}
@@ -490,8 +553,18 @@ public class GUI extends Main{
 			Tableau_3.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(3).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_3, 0, SpringLayout.EAST, Foundation_3);
 			frame.getContentPane().add(Tableau_3);
-			Tabs.get(3).get(index).card = Tableau_3;
-			Tabs.get(3).space += 30;
+			if (t3Empty == true) {
+				Tableau_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
+				Tableau_3.setVisible(false);
+				t3Empty = false;
+				i--;
+				emptyCards.add(Tableau_3);
+			}
+			else {
+				emptyCards.get(3).setVisible(false);
+				Tabs.get(3).get(index).card = Tableau_3;
+				Tabs.get(3).space += 30;
+			}
 		}
 	}
 	
@@ -517,7 +590,9 @@ public class GUI extends Main{
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(4).get(Tabs.get(4).size()-i).card);
 								Tabs.get(4).get(Tabs.get(4).size()-i).card = null;
-								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img))); //TODO FIXME
+								try {
+									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 								if (Tabs.get(tabIndex).space != 49) 
 									Tabs.get(tabIndex).space -= 30;
 							}
@@ -544,10 +619,20 @@ public class GUI extends Main{
 			});
 			springLayout.putConstraint(SpringLayout.NORTH, Tableau_4, Tabs.get(4).space, SpringLayout.SOUTH, btnWastePile);
 			Tableau_4.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(4).get(index).Img)));
-			springLayout.putConstraint(SpringLayout.WEST, Tableau_4, 5, SpringLayout.EAST, Tabs.get(3).get(0).card);
+			springLayout.putConstraint(SpringLayout.WEST, Tableau_4, 5, SpringLayout.EAST, emptyCards.get(3));
 			frame.getContentPane().add(Tableau_4);
-			Tabs.get(4).get(index).card = Tableau_4;
-			Tabs.get(4).space += 30;
+			if (t4Empty == true) {
+				Tableau_4.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
+				Tableau_4.setVisible(false);
+				t4Empty = false;
+				i--;
+				emptyCards.add(Tableau_4);
+			}
+			else {
+				emptyCards.get(4).setVisible(false);
+				Tabs.get(4).get(index).card = Tableau_4;
+				Tabs.get(4).space += 30;
+			}
 		}
 	}
 	
@@ -575,7 +660,9 @@ public class GUI extends Main{
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(5).get(Tabs.get(5).size()-i).card);
 								Tabs.get(5).get(Tabs.get(5).size()-i).card = null;
-								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								try {
+									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 								if (Tabs.get(tabIndex).space != 49) 
 									Tabs.get(tabIndex).space -= 30;
 							}
@@ -602,10 +689,20 @@ public class GUI extends Main{
 			});
 			springLayout.putConstraint(SpringLayout.NORTH, Tableau_5, Tabs.get(5).space, SpringLayout.SOUTH, btnWastePile);
 			Tableau_5.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(5).get(index).Img)));
-			springLayout.putConstraint(SpringLayout.WEST, Tableau_5, 6, SpringLayout.EAST, Tabs.get(4).get(0).card);
+			springLayout.putConstraint(SpringLayout.WEST, Tableau_5, 6, SpringLayout.EAST, emptyCards.get(4));
 			frame.getContentPane().add(Tableau_5);
-			Tabs.get(5).get(index).card = Tableau_5;
-			Tabs.get(5).space += 30;
+			if (t5Empty == true) {
+				Tableau_5.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
+				Tableau_5.setVisible(false);
+				t5Empty = false;
+				i--;
+				emptyCards.add(Tableau_5);
+			}
+			else {
+				emptyCards.get(5).setVisible(false);
+				Tabs.get(5).get(index).card = Tableau_5;
+				Tabs.get(5).space += 30;
+			}
 		}
 	}
 	
@@ -631,7 +728,9 @@ public class GUI extends Main{
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(6).get(Tabs.get(6).size()-i).card);
 								Tabs.get(6).get(Tabs.get(6).size()-i).card = null;
-								Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								try {
+									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
+								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
 								if (Tabs.get(tabIndex).space != 49) 
 									Tabs.get(tabIndex).space -= 30;
 							}
@@ -657,11 +756,21 @@ public class GUI extends Main{
 				}
 			});
 			springLayout.putConstraint(SpringLayout.NORTH, Tableau_6, Tabs.get(6).space, SpringLayout.SOUTH, btnWastePile);
-			springLayout.putConstraint(SpringLayout.WEST, Tableau_6, 5, SpringLayout.EAST, Tabs.get(5).get(0).card);
+			springLayout.putConstraint(SpringLayout.WEST, Tableau_6, 5, SpringLayout.EAST, emptyCards.get(5));
 			Tableau_6.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(6).get(index).Img)));
 			frame.getContentPane().add(Tableau_6);
-			Tabs.get(6).get(index).card = Tableau_6;
-			Tabs.get(6).space += 30;
+			if (t6Empty == true) {
+				Tableau_6.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
+				Tableau_6.setVisible(false);
+				t6Empty = false;
+				i--;
+				emptyCards.add(Tableau_6);
+			}
+			else {
+				emptyCards.get(6).setVisible(false);
+				Tabs.get(6).get(index).card = Tableau_6;
+				Tabs.get(6).space += 30;
+			}
 		}
 	}
 }
