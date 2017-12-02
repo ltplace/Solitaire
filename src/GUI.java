@@ -24,13 +24,13 @@ public class GUI extends Main{
 	private JButton Foundation_1;
 	private JButton Foundation_2;
 	private JButton Foundation_3;
-	private boolean t0Empty = true;
-	private boolean t1Empty = true;
-	private boolean t2Empty = true;
-	private boolean t3Empty = true;
-	private boolean t4Empty = true;
-	private boolean t5Empty = true;
-	private boolean t6Empty = true;
+	private boolean t0Starter = true;
+	private boolean t1Starter = true;
+	private boolean t2Starter = true;
+	private boolean t3Starter = true;
+	private boolean t4Starter = true;
+	private boolean t5Starter = true;
+	private boolean t6Starter = true;
 	ArrayList<JButton> emptyCards = new ArrayList<>();
 
 	/**
@@ -145,9 +145,12 @@ public class GUI extends Main{
 					}
 					wpPressed = false;
 				}
+				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
+					System.out.println("You won!");
+				}
 			}
 		});
-		Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/red_back.png")));
+		Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_0);
 		
 		// Foundation 1 has been pressed, checks whether Wastepile or Tableau card has been pressed
@@ -190,9 +193,12 @@ public class GUI extends Main{
 					}
 					wpPressed = false;
 				}
+				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
+					System.out.println("You won!");
+				}
 			}
 		});
-		Foundation_1.setIcon(new ImageIcon(GUI.class.getResource("/resources/red_back.png")));
+		Foundation_1.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_1);
 		
 		// Foundation 2 has been pressed, checks whether Wastepile or Tableau card has been pressed
@@ -234,10 +240,13 @@ public class GUI extends Main{
 					}
 					wpPressed = false;
 				}
+				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
+					System.out.println("You won!");
+				}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.WEST, Foundation_2, 6, SpringLayout.EAST, Foundation_1);
-		Foundation_2.setIcon(new ImageIcon(GUI.class.getResource("/resources/red_back.png")));
+		Foundation_2.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_2);
 		
 		// Foundation 3 has been pressed, checks whether Wastepile or Tableau card has been pressed
@@ -279,10 +288,13 @@ public class GUI extends Main{
 					}
 					wpPressed = false;
 				}
+				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
+					System.out.println("You won!");
+				}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.WEST, Foundation_3, 6, SpringLayout.EAST, Foundation_2);
-		Foundation_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/red_back.png")));
+		Foundation_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_3);
 		
 		// Create columns
@@ -299,7 +311,7 @@ public class GUI extends Main{
 	public void Tab0(int num, int k) {
 		JButton Tableau_0;
 		for(int i = 0; i < num; i++) {
-			int index = k;
+			int index = k + i;
 			int indexInsideLoop = index;
 			Tableau_0 = new JButton("");
 			Tableau_0.addActionListener(new ActionListener() {
@@ -310,9 +322,9 @@ public class GUI extends Main{
 						cardIndex = indexInsideLoop;
 					}
 					else if (tabPressed == true && tabIndex != 0) {
-						int sBefore = Tabs.get(0).size();
+						int sBefore = Tabs.get(tabIndex).size();
 						boolean transfer = TabMoveChecker(tabIndex, cardIndex, 0);
-						int sAfter = Tabs.get(0).size();
+						int sAfter = Tabs.get(tabIndex).size();
 						if (transfer == true) {
 							for(int i = 1; i < sBefore - sAfter + 1; i++) {
 								frame.remove(Tabs.get(0).get(Tabs.get(0).size()-i).card);
@@ -348,9 +360,9 @@ public class GUI extends Main{
 			springLayout.putConstraint(SpringLayout.NORTH, Tableau_0, Tabs.get(0).space, SpringLayout.NORTH, emptyCards.get(1));
 			Tableau_0.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(0).get(index).Img)));
 			frame.getContentPane().add(Tableau_0);
-			if (t0Empty == true) {
+			if (t0Starter == true) {
 				Tableau_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
-				t0Empty = false;
+				t0Starter = false;
 				Tableau_0.setVisible(false);
 				i--;
 				emptyCards.set(0, Tableau_0);
@@ -363,7 +375,7 @@ public class GUI extends Main{
 		}
 	}
 	
-	public void Tab1(int num, final int k) {	//TODO continue to work on indices and fix zero index
+	public void Tab1(int num, final int k) {
 		JButton Tableau_1;
 		for(int i = 0; i < num; i++) {
 			int index = k + i;
@@ -417,10 +429,10 @@ public class GUI extends Main{
 			Tableau_1.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(1).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_1, 0, SpringLayout.EAST, Foundation_1);
 			frame.getContentPane().add(Tableau_1);
-			if (t1Empty == true) {
+			if (t1Starter == true) {
 				Tableau_1.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 				Tableau_1.setVisible(false);
-				t1Empty = false;
+				t1Starter = false;
 				i--;
 				emptyCards.set(1, Tableau_1);
 			}
@@ -485,10 +497,10 @@ public class GUI extends Main{
 			Tableau_2.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(2).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_2, 0, SpringLayout.WEST, Foundation_2);
 			frame.getContentPane().add(Tableau_2);
-			if (t2Empty == true) {
+			if (t2Starter == true) {
 				Tableau_2.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 				Tableau_2.setVisible(false);
-				t2Empty = false;
+				t2Starter = false;
 				i--;
 				emptyCards.add(Tableau_2);
 			}
@@ -553,10 +565,10 @@ public class GUI extends Main{
 			Tableau_3.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(3).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.EAST, Tableau_3, 0, SpringLayout.EAST, Foundation_3);
 			frame.getContentPane().add(Tableau_3);
-			if (t3Empty == true) {
+			if (t3Starter == true) {
 				Tableau_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 				Tableau_3.setVisible(false);
-				t3Empty = false;
+				t3Starter = false;
 				i--;
 				emptyCards.add(Tableau_3);
 			}
@@ -621,10 +633,10 @@ public class GUI extends Main{
 			Tableau_4.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(4).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_4, 5, SpringLayout.EAST, emptyCards.get(3));
 			frame.getContentPane().add(Tableau_4);
-			if (t4Empty == true) {
+			if (t4Starter == true) {
 				Tableau_4.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 				Tableau_4.setVisible(false);
-				t4Empty = false;
+				t4Starter = false;
 				i--;
 				emptyCards.add(Tableau_4);
 			}
@@ -691,10 +703,10 @@ public class GUI extends Main{
 			Tableau_5.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(5).get(index).Img)));
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_5, 6, SpringLayout.EAST, emptyCards.get(4));
 			frame.getContentPane().add(Tableau_5);
-			if (t5Empty == true) {
+			if (t5Starter == true) {
 				Tableau_5.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 				Tableau_5.setVisible(false);
-				t5Empty = false;
+				t5Starter = false;
 				i--;
 				emptyCards.add(Tableau_5);
 			}
@@ -759,10 +771,10 @@ public class GUI extends Main{
 			springLayout.putConstraint(SpringLayout.WEST, Tableau_6, 5, SpringLayout.EAST, emptyCards.get(5));
 			Tableau_6.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(6).get(index).Img)));
 			frame.getContentPane().add(Tableau_6);
-			if (t6Empty == true) {
+			if (t6Starter == true) {
 				Tableau_6.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 				Tableau_6.setVisible(false);
-				t6Empty = false;
+				t6Starter = false;
 				i--;
 				emptyCards.add(Tableau_6);
 			}

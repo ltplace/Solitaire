@@ -9,7 +9,7 @@ public class Tableau implements Stack<Card> {
 	// Method for checking valid movements between Tableaus
 	public boolean addTo(Card card) {
 		if (Column.isEmpty()) {
-			if (card.value == 13 || card.value == 26 || card.value == 39 || card.value == 52) {
+			if (card.value == 13) {
 				return true;
 			}
 			else {
