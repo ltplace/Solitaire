@@ -13,7 +13,9 @@ public class Deck implements Queue<Card>{
 	public Deck (){
 
 		deck = new ArrayList<Card>();
-
+/*
+* flyweight design is used for card creation
+*/
 		final String[] setSuit = new String[] { "C", "S", "H", "D" };
 
 		for (int i = 0; i < 4; i++) {

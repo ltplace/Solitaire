@@ -1,6 +1,5 @@
 import javax.swing.JButton;
 
-
 public class Card {
 
 	// Attributes
@@ -13,9 +12,9 @@ public class Card {
 	protected String BackImg = null;
 	protected String Img = null;
 	protected JButton card = null;
-	
-	
-	
+
+
+
 	public Card (String suit, int value){
 		this.suit = suit;
 		this.value = value;
@@ -27,7 +26,7 @@ public class Card {
 		// Set card to show back side of card
 		this.BackImg = "resources//red_back.png";
 		Img = BackImg;
-		
+
 	}
 
 	public void faceUp(boolean choice) {
