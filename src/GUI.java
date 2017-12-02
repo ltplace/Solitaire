@@ -87,13 +87,10 @@ public class GUI extends Main{
 		Deck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Main.moveToWastePile();
-				if (Main.WP.isMT()) {
-					btnWastePile.setVisible(false);
-				}
-				else {
-					btnWastePile.setVisible(true);
-					btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
-				}
+				btnWastePile.setVisible(true);
+			try {
+				btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+			} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, btnWastePile, 0, SpringLayout.NORTH, Deck);
@@ -141,7 +138,9 @@ public class GUI extends Main{
 					WPtoFndChecker(0);
 					if (!Fnds.get(0).isMT()) {
 						Foundation_0.setIcon(new ImageIcon(GUI.class.getResource(Fnds.get(0).top().Img)));
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 					}
 					wpPressed = false;
 				}
@@ -189,7 +188,10 @@ public class GUI extends Main{
 					Main.WPtoFndChecker(1);
 					if (!Main.Fnds.get(1).isMT()) {
 						Foundation_1.setIcon(new ImageIcon(GUI.class.getResource(Main.Fnds.get(1).top().Img)));
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
+						
 					}
 					wpPressed = false;
 				}
@@ -236,7 +238,9 @@ public class GUI extends Main{
 					Main.WPtoFndChecker(2);
 					if (!Main.Fnds.get(2).isMT()) {
 						Foundation_2.setIcon(new ImageIcon(GUI.class.getResource(Main.Fnds.get(2).top().Img)));
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 					}
 					wpPressed = false;
 				}
@@ -284,7 +288,9 @@ public class GUI extends Main{
 					WPtoFndChecker(3);
 					if (!Fnds.get(3).isMT()) {
 						Foundation_3.setIcon(new ImageIcon(GUI.class.getResource(Fnds.get(3).top().Img)));
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 					}
 					wpPressed = false;
 				}
@@ -346,7 +352,9 @@ public class GUI extends Main{
 					}
 					else if (wpPressed == true) {
 						boolean transfer = WPtoTabChecker(0);
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 						if (transfer == true) {
 							Tab0(1, Tabs.get(0).size()- 1);
 							frame.revalidate();
@@ -414,7 +422,9 @@ public class GUI extends Main{
 					}
 					else if (wpPressed == true) {
 						boolean transfer = WPtoTabChecker(1);
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 						if (transfer == true) {
 							Tab1(1, Tabs.get(1).size()- 1);
 							frame.revalidate();
@@ -483,7 +493,9 @@ public class GUI extends Main{
 					}
 					else if (wpPressed == true) {
 						boolean transfer = WPtoTabChecker(2);
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 						if (transfer == true) {
 							Tab2(1, Tabs.get(2).size()- 1);
 							frame.revalidate();
@@ -551,7 +563,9 @@ public class GUI extends Main{
 					}
 					else if (wpPressed == true) {
 						boolean transfer = WPtoTabChecker(3);
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 						if (transfer == true) {
 							Tab3(1, Tabs.get(3).size()- 1);
 							frame.revalidate();
@@ -619,7 +633,9 @@ public class GUI extends Main{
 					}
 					else if (wpPressed == true) {
 						boolean transfer = WPtoTabChecker(4);
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 						if (transfer == true) {
 							Tab4(1, Tabs.get(4).size()- 1);
 							frame.revalidate();
@@ -689,7 +705,9 @@ public class GUI extends Main{
 					}
 					else if (wpPressed == true) {
 						boolean transfer = WPtoTabChecker(5);
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 						if (transfer == true) {
 							Tab5(1, Tabs.get(5).size()- 1);
 							frame.revalidate();
@@ -757,7 +775,9 @@ public class GUI extends Main{
 					}
 					else if (wpPressed == true) {
 						boolean transfer = WPtoTabChecker(6);
-						btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						try {
+							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
+						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
 						if (transfer == true) {
 							Tab6(1, Tabs.get(6).size()- 1);
 							frame.revalidate();
