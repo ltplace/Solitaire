@@ -9,11 +9,15 @@ import javax.imageio.ImageIO;
 public class Deck implements Queue<Card>{
 
 	protected static ArrayList<Card> deck;
-
+/*
+Deck is a singleton
+*/
 	public Deck (){
-
 		deck = new ArrayList<Card>();
-
+/*
+* flyweight design is used for card creation (52 card objects need to be created)
+* image file strings are set to card.FaceImg
+*/
 		final String[] setSuit = new String[] { "C", "S", "H", "D" };
 
 		for (int i = 0; i < 4; i++) {

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//GUI.java is both the view and the controller
 public class GUI extends Main{
 
 	private JFrame frame;
@@ -36,7 +37,7 @@ public class GUI extends Main{
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -60,7 +61,7 @@ public class GUI extends Main{
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
+
 	private void initialize() {
 		frame = new JFrame("Solitaire");
 		frame.getContentPane().setBackground(new Color(34, 139, 34));
@@ -68,11 +69,11 @@ public class GUI extends Main{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
-		
+
 		// Sets temporary values for emptyCards list
 		emptyCards.add(new JButton());
 		emptyCards.add(new JButton());
-		
+
 		btnWastePile = new JButton("Waste Pile");
 		btnWastePile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -81,7 +82,7 @@ public class GUI extends Main{
 		});
 		btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
 		frame.getContentPane().add(btnWastePile);
-		
+
 		Deck = new JButton("Deck");	//FIXME
 		Deck.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -101,14 +102,14 @@ public class GUI extends Main{
 		springLayout.putConstraint(SpringLayout.EAST, Deck, -82, SpringLayout.EAST, frame.getContentPane());
 		Deck.setIcon(new ImageIcon(GUI.class.getResource(Main.deck.examineFront().Img)));
 		frame.getContentPane().add(Deck);
-		
+
 		// Foundation 0 has been pressed, checks whether Wastepile or Tableau card has been pressed
 		Foundation_0 = new JButton("");
 		springLayout.putConstraint(SpringLayout.NORTH, Foundation_0, 0, SpringLayout.NORTH, btnWastePile);
 		springLayout.putConstraint(SpringLayout.WEST, Foundation_0, 10, SpringLayout.WEST, frame.getContentPane());
 		Foundation_0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				if (tabPressed == true) {
 					boolean transfer = FndMoveChecker(tabIndex, 0);
 					if (!Fnds.get(0).isMT()) {
@@ -135,7 +136,7 @@ public class GUI extends Main{
 					tabIndex = 0;
 					cardIndex = 0;
 				}
-				
+
 				if (wpPressed == true) {
 					WPtoFndChecker(0);
 					if (!Fnds.get(0).isMT()) {
@@ -153,7 +154,7 @@ public class GUI extends Main{
 		});
 		Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_0);
-		
+
 		// Foundation 1 has been pressed, checks whether Wastepile or Tableau card has been pressed
 		Foundation_1 = new JButton("");
 		springLayout.putConstraint(SpringLayout.NORTH, Foundation_1, 10, SpringLayout.NORTH, frame.getContentPane());
@@ -193,7 +194,7 @@ public class GUI extends Main{
 						try {
 							btnWastePile.setIcon(new ImageIcon(GUI.class.getResource(Main.WP.top().Img)));
 						} catch (NullPointerException ex) {btnWastePile.setVisible(false);}
-						
+
 					}
 					wpPressed = false;
 				}
@@ -204,7 +205,7 @@ public class GUI extends Main{
 		});
 		Foundation_1.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_1);
-		
+
 		// Foundation 2 has been pressed, checks whether Wastepile or Tableau card has been pressed
 		Foundation_2 = new JButton("");
 		springLayout.putConstraint(SpringLayout.NORTH, Foundation_2, 10, SpringLayout.NORTH, frame.getContentPane());
@@ -254,7 +255,7 @@ public class GUI extends Main{
 		springLayout.putConstraint(SpringLayout.WEST, Foundation_2, 6, SpringLayout.EAST, Foundation_1);
 		Foundation_2.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_2);
-		
+
 		// Foundation 3 has been pressed, checks whether Wastepile or Tableau card has been pressed
 		Foundation_3 = new JButton("");
 		springLayout.putConstraint(SpringLayout.NORTH, Foundation_3, 10, SpringLayout.NORTH, frame.getContentPane());
@@ -304,7 +305,7 @@ public class GUI extends Main{
 		springLayout.putConstraint(SpringLayout.WEST, Foundation_3, 6, SpringLayout.EAST, Foundation_2);
 		Foundation_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/temp.png")));
 		frame.getContentPane().add(Foundation_3);
-		
+
 		// Create columns
 		Tabs.get(0).space = 0;
 		Tab1(Tabs.get(1).size(), 0);
@@ -315,7 +316,7 @@ public class GUI extends Main{
 		Tab5(Tabs.get(5).size(), 0);
 		Tab6(Tabs.get(6).size(), 0);
 	}
-	
+
 	public void Tab0(int num, int k) {
 		JButton Tableau_0;
 		for(int i = 0; i < num; i++) {
@@ -340,7 +341,7 @@ public class GUI extends Main{
 								try {
 									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
-							if (Tabs.get(tabIndex).space != 0) 
+							if (Tabs.get(tabIndex).space != 0)
 								Tabs.get(tabIndex).space -= 30;
 							}
 							Tab0(sBefore - sAfter, Tabs.get(0).size() - (sBefore - sAfter));
@@ -376,7 +377,7 @@ public class GUI extends Main{
 				Tableau_0.setVisible(false);
 				i--;
 				emptyCards.set(0, Tableau_0);
-			}	
+			}
 			else {
 				emptyCards.get(0).setVisible(false);
 				Tabs.get(0).get(index).card = Tableau_0;
@@ -384,7 +385,7 @@ public class GUI extends Main{
 			}
 		}
 	}
-	
+
 	public void Tab1(int num, final int k) {
 		JButton Tableau_1;
 		for(int i = 0; i < num; i++) {
@@ -410,7 +411,7 @@ public class GUI extends Main{
 								try {
 									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
-								if (Tabs.get(tabIndex).space != 49) 
+								if (Tabs.get(tabIndex).space != 49)
 									Tabs.get(tabIndex).space -= 30;
 							}
 							Tab1(sBefore - sAfter, Tabs.get(1).size()- (sBefore - sAfter));
@@ -455,7 +456,7 @@ public class GUI extends Main{
 			}
 		}
 	}
-	
+
 	public void Tab2(int num, final int k) {
 		JButton Tableau_2;
 		for(int i = 0; i < num; i++) {
@@ -481,7 +482,7 @@ public class GUI extends Main{
 								try {
 									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
-								if (Tabs.get(tabIndex).space != 49) 
+								if (Tabs.get(tabIndex).space != 49)
 									Tabs.get(tabIndex).space -= 30;
 							}
 							Tab2(sBefore - sAfter, Tabs.get(2).size()- (sBefore - sAfter));
@@ -525,7 +526,7 @@ public class GUI extends Main{
 			}
 		}
 	}
-	
+
 	public void Tab3(int num, final int k) {
 		JButton Tableau_3;
 		for(int i = 0; i < num; i++) {
@@ -551,7 +552,7 @@ public class GUI extends Main{
 								try {
 									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
-								if (Tabs.get(tabIndex).space != 49) 
+								if (Tabs.get(tabIndex).space != 49)
 									Tabs.get(tabIndex).space -= 30;
 							}
 							Tab3(sBefore - sAfter, Tabs.get(3).size()- (sBefore - sAfter));
@@ -595,7 +596,7 @@ public class GUI extends Main{
 			}
 		}
 	}
-	
+
 	public void Tab4(int num, final int k) {
 		JButton Tableau_4;
 		for(int i = 0; i < num; i++) {
@@ -621,7 +622,7 @@ public class GUI extends Main{
 								try {
 									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
-								if (Tabs.get(tabIndex).space != 49) 
+								if (Tabs.get(tabIndex).space != 49)
 									Tabs.get(tabIndex).space -= 30;
 							}
 							Tab4(sBefore - sAfter, Tabs.get(4).size()- (sBefore - sAfter));
@@ -665,7 +666,7 @@ public class GUI extends Main{
 			}
 		}
 	}
-	
+
 	public void Tab5(int num, final int k) {
 		JButton Tableau_5;
 		for(int i = 0; i < num; i++) {
@@ -691,7 +692,7 @@ public class GUI extends Main{
 								try {
 									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
-								if (Tabs.get(tabIndex).space != 49) 
+								if (Tabs.get(tabIndex).space != 49)
 									Tabs.get(tabIndex).space -= 30;
 							}
 							Tab5(sBefore - sAfter, Tabs.get(5).size()- (sBefore - sAfter));
@@ -735,7 +736,7 @@ public class GUI extends Main{
 			}
 		}
 	}
-	
+
 	public void Tab6(int num, final int k) {
 		JButton Tableau_6;
 		for(int i = 0; i < num; i++) {
@@ -761,7 +762,7 @@ public class GUI extends Main{
 								try {
 									Tabs.get(tabIndex).top().card.setIcon(new ImageIcon(GUI.class.getResource(Tabs.get(tabIndex).top().Img)));
 								} catch (NullPointerException ex) {emptyCards.get(tabIndex).setVisible(true);};
-								if (Tabs.get(tabIndex).space != 49) 
+								if (Tabs.get(tabIndex).space != 49)
 									Tabs.get(tabIndex).space -= 30;
 							}
 							Tab6(sBefore - sAfter, Tabs.get(6).size()- (sBefore - sAfter));
