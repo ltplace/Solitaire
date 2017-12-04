@@ -198,7 +198,7 @@ public class GUI extends Main{
 					wpPressed = false;
 				}
 				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
-					Foundation_1.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
+					Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
 				}
 			}
 		});
@@ -247,7 +247,7 @@ public class GUI extends Main{
 					wpPressed = false;
 				}
 				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
-					Foundation_2.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
+					Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
 				}
 			}
 		});
@@ -297,7 +297,7 @@ public class GUI extends Main{
 					wpPressed = false;
 				}
 				if (Fnds.get(0).isFull() && Fnds.get(1).isFull() && Fnds.get(2).isFull() && Fnds.get(3).isFull()) {	// TODO
-					Foundation_3.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
+					Foundation_0.setIcon(new ImageIcon(GUI.class.getResource("/resources/youWin.jpg")));
 				}
 			}
 		});
@@ -324,7 +324,7 @@ public class GUI extends Main{
 			Tableau_0 = new JButton("");
 			Tableau_0.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (tabPressed == false && wpPressed == false) {
+					if (tabPressed == false && wpPressed == false && !Tabs.get(0).isMT()) {
 						tabPressed = true;
 						tabIndex = 0;
 						cardIndex = indexInsideLoop;
@@ -393,7 +393,7 @@ public class GUI extends Main{
 			Tableau_1 = new JButton("");
 			Tableau_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (tabPressed == false && wpPressed == false) {
+					if (tabPressed == false && wpPressed == false && !Tabs.get(1).isMT()) {
 						tabPressed = true;
 						tabIndex = 1;
 						cardIndex = indexInLoop;
@@ -464,7 +464,7 @@ public class GUI extends Main{
 			Tableau_2 = new JButton("");
 			Tableau_2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (tabPressed == false && wpPressed == false) {
+					if (tabPressed == false && wpPressed == false && !Tabs.get(2).isMT()) {
 						tabPressed = true;
 						tabIndex = 2;
 						cardIndex = indexInLoop;
@@ -534,7 +534,7 @@ public class GUI extends Main{
 			Tableau_3 = new JButton("");
 			Tableau_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (tabPressed == false && wpPressed == false) {
+					if (tabPressed == false && wpPressed == false && !Tabs.get(3).isMT()) {
 						tabPressed = true;
 						tabIndex = 3;
 						cardIndex = indexInLoop;;
@@ -604,7 +604,7 @@ public class GUI extends Main{
 			Tableau_4 = new JButton("");
 			Tableau_4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (tabPressed == false && wpPressed == false) {
+					if (tabPressed == false && wpPressed == false && !Tabs.get(4).isMT()) {
 						tabPressed = true;
 						tabIndex = 4;
 						cardIndex = indexInLoop;
@@ -674,13 +674,11 @@ public class GUI extends Main{
 			Tableau_5 = new JButton("");
 			Tableau_5.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (tabPressed == false && wpPressed == false) {
+					if (tabPressed == false && wpPressed == false && !Tabs.get(5).isMT()) {
 						tabPressed = true;
 						tabIndex = 5;
 						cardIndex = indexInLoop;
 						System.out.println(indexInLoop);
-						//frame.getContentPane().remove(Tabs.get(5).get(cardIndex).card);
-						//Tabs.get(5).get(cardIndex).card.setVisible(false);
 					}
 					else if (tabPressed == true && tabIndex != 5) {
 						int sBefore = Tabs.get(tabIndex).size();
@@ -746,7 +744,7 @@ public class GUI extends Main{
 			Tableau_6 = new JButton("");
 			Tableau_6.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (tabPressed == false && wpPressed == false) {
+					if (tabPressed == false && wpPressed == false && !Tabs.get(6).isMT()) {
 						tabPressed = true;
 						tabIndex = 6;
 						cardIndex = indexInLoop;
