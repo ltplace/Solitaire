@@ -1,21 +1,23 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//The model class
 public class Main {
 
 	protected static ArrayList<Tableau> Tabs;
 	protected static ArrayList<Foundation> Fnds;
+	//Deck is a singleton
 	protected static Deck deck;
 	protected static WastePile WP;
-	
+
 	public Main() {
-		
+
 		// Instantiate Variables
 		Tabs = new ArrayList<>();
 		Fnds = new ArrayList<>();
 		deck = new Deck();
 		WP = new WastePile();
-		
+
 		// Create Tableaus and Foundations
 		Tableau T;
 		Foundation F;
@@ -25,7 +27,7 @@ public class Main {
 		for(int i = 0; i < 4; i++) {
 			Fnds.add(F = new Foundation());
 		}
-		
+
 		// Adds all Cards to each Tableau
 		int card = 0;
 		for(int j = 0; j < 7; j++) {
@@ -34,28 +36,28 @@ public class Main {
 				card++;
 			}
 		}
-		
+
 		// Make ends of each Tableau face-up (First playable card in each column) and grabbable
 		for(int i = 0; i < 7; i++) {
 			Tabs.get(i).top().faceUp(true);
 			Tabs.get(i).top().grabbable = true;
 		}
-		
+
 		// Place one card in WastePile
 		moveToWastePile();
-		
+
 	}
-	
+
 	// Method that checks for valid moves between Tableaus
 	public static boolean TabMoveChecker(int origTab, int index, int newTab) {
-		
+
 		// Check to see if move is valid for multiple cards
 		boolean flag = isGrabbable(origTab, index);
 		if (flag == false) {
 			System.out.println(flag + " Not grabbable");
 			return false;
 		}
-		
+
 		// Send to Tableau class to see if it can be added
 		boolean valid = Tabs.get(newTab).addTo(Tabs.get(origTab).get(index));
 		System.out.println(valid + " Move from tab to tab from " + Tabs.get(origTab).get(index) + " to " + Tabs.get(newTab).top());
@@ -83,7 +85,7 @@ public class Main {
 			return false;
 		}
 	}
-	
+
 	// Method that checks for valid moves between WastePile and Foundation
 	public static void WPtoFndChecker(int fnd) {
 		boolean valid = Fnds.get(fnd).addTo(WP.top());
@@ -99,7 +101,7 @@ public class Main {
 			}
 		}
 	}
-	
+
 	// Method that checks for valid moves between Tableaus and WastePile
 	public static boolean WPtoTabChecker(int Tab) {
 		boolean valid = Tabs.get(Tab).addTo(WP.top());
@@ -120,7 +122,7 @@ public class Main {
 			return false;
 		}
 	}
-	
+
 	// Method that checks for valid moves from Tableaus to Foundations
 	public static boolean FndMoveChecker(int tab, int fnd) {
 		if (!Fnds.get(fnd).isMT()) {
@@ -144,7 +146,7 @@ public class Main {
 			return false;
 		}
 	}
-	
+
 	// Method that move cards from Deck to WastePile
 	public static void moveToWastePile() {
 		try {
@@ -170,7 +172,7 @@ public class Main {
 			}
 		}
 	}
-	
+
 	// Checks if card(s) is/are grabbable
 	public static boolean isGrabbable(int origTab, int index) {
 		boolean flag = true;
@@ -179,16 +181,16 @@ public class Main {
 				flag = false;									// If not, move cannot be made
 			}
 		}
-		
+
 		return flag;
 	}
 
 
-	
-	
-	
+
+
+
 // Excess Testing Code
-		
+
 		// Visual Rep
 	public static void print() {
 		for(int i = 0; i < 7; i++) {
@@ -205,6 +207,3 @@ public class Main {
 		System.out.println();
 	}
 }
-		
-
-
